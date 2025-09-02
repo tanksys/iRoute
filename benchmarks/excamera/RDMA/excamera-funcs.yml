@@ -1,0 +1,125 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  vpxenc-1:
+    lang: python3-rdma-func
+    handler: ./vpxenc-1
+    image: tjulym/vpxenc-1:rdma
+    environment:
+      name: vpxenc-1
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+  vpxenc-2:
+    lang: python3-rdma-func
+    handler: ./vpxenc-2
+    image: tjulym/vpxenc-2:rdma
+    environment:
+      name: vpxenc-2
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  vpxenc-3:
+    lang: python3-rdma-func
+    handler: ./vpxenc-3
+    image: tjulym/vpxenc-3:rdma
+    environment:
+      name: vpxenc-3
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  vx-con:
+    lang: python3-rdma-func
+    handler: ./vx-con
+    image: tjulym/vx-con:rdma
+    environment:
+      name: vx-con
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  xcdec-1:
+    lang: python3-rdma-func
+    handler: ./xcdec-1
+    image: tjulym/xcdec-1:rdma
+    environment:
+      name: xcdec-1
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  xcdec-2:
+    lang: python3-rdma-func
+    handler: ./xcdec-2
+    image: tjulym/xcdec-2:rdma
+    environment:
+      name: xcdec-2
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  xcdec-3:
+    lang: python3-rdma-func
+    handler: ./xcdec-3
+    image: tjulym/xcdec-3:rdma
+    environment:
+      name: xcdec-3
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  group:
+    lang: python3-rdma-func
+    handler: ./group
+    image: tjulym/group:rdma
+    environment:
+      name: group
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  reencode-1:
+    lang: python3-rdma-func
+    handler: ./reencode-1
+    image: tjulym/reencode-1:rdma
+    environment:
+      name: reencode-1
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  reencode-2:
+    lang: python3-rdma-func
+    handler: ./reencode-2
+    image: tjulym/reencode-2:rdma
+    environment:
+      name: reencode-2
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  rebase:
+    lang: python3-rdma-func
+    handler: ./rebase
+    image: tjulym/rebase:rdma
+    environment:
+      name: rebase
+      cc: excamera-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    

@@ -1,0 +1,76 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  compose-post:
+    lang: python3-socket-func
+    handler: ./compose-post
+    image: tjulym/compose-post:socket
+    environment:
+      name: compose-post
+      cc: sn-cc
+  upload-user-mentions:
+    lang: python3-socket-func
+    handler: ./upload-user-mentions
+    image: tjulym/upload-user-mentions:socket
+    environment:
+      name: upload-user-mentions
+      cc: sn-cc
+  upload-creator:
+    lang: python3-socket-func
+    handler: ./upload-creator
+    image: tjulym/upload-creator:socket
+    environment:
+      name: upload-creator
+      cc: sn-cc
+  upload-media:
+    lang: python3-socket-func
+    handler: ./upload-media
+    image: tjulym/upload-media:socket
+    environment:
+      name: upload-media
+      cc: sn-cc
+  upload-text:
+    lang: python3-socket-func
+    handler: ./upload-text
+    image: tjulym/upload-text:socket
+    environment:
+      name: upload-text
+      cc: sn-cc
+  upload-unique-id:
+    lang: python3-socket-func
+    handler: ./upload-unique-id
+    image: tjulym/upload-unique-id:socket
+    environment:
+      name: upload-unique-id
+      cc: sn-cc
+  compose-and-upload:
+    lang: python3-socket-func
+    handler: ./compose-and-upload
+    image: tjulym/compose-and-upload:socket
+    environment:
+      name: compose-and-upload
+      cc: sn-cc
+  upload-home-timeline:
+    lang: python3-socket-func
+    handler: ./upload-home-timeline
+    image: tjulym/upload-home-timeline:socket
+    environment:
+      name: upload-home-timeline
+      cc: sn-cc
+  upload-user-timeline:
+    lang: python3-socket-func
+    handler: ./upload-user-timeline
+    image: tjulym/upload-user-timeline:socket
+    environment:
+      name: upload-user-timeline
+      cc: sn-cc
+  post-storage:
+    lang: python3-socket-func
+    handler: ./post-storage
+    image: tjulym/post-storage:socket
+    environment:
+      name: post-storage
+      cc: sn-cc
+

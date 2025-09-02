@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  sn-cc:
+    lang: python3-socket-cc
+    handler: ./sn-cc
+    image: tjulym/sn-cc:socket
+

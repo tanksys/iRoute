@@ -1,0 +1,71 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  marketdata:
+    lang: python3-rdma-func
+    handler: ./marketdata
+    image: tjulym/marketdata:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: marketdata
+      cc: finra-cc
+    
+  lastpx:
+    lang: python3-rdma-func
+    handler: ./lastpx
+    image: tjulym/lastpx:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: lastpx
+      cc: finra-cc
+    
+  side:
+    lang: python3-rdma-func
+    handler: ./side
+    image: tjulym/side:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: side
+      cc: finra-cc
+    
+  trddate:
+    lang: python3-rdma-func
+    handler: ./trddate
+    image: tjulym/trddate:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: trddate
+      cc: finra-cc
+    
+  volume:
+    lang: python3-rdma-func
+    handler: ./volume
+    image: tjulym/volume:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: volume
+      cc: finra-cc
+    
+  margin-balance:
+    lang: python3-rdma-func
+    handler: ./margin-balance
+    image: tjulym/margin-balance:rdma
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    environment:
+      name: margin-balance
+      cc: finra-cc
+    

@@ -1,0 +1,93 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  vpxenc-1:
+    lang: python3-socket-func
+    handler: ./vpxenc-1
+    image: tjulym/vpxenc-1:socket
+    environment:
+      name: vpxenc-1
+      cc: excamera-cc
+    
+  vpxenc-2:
+    lang: python3-socket-func
+    handler: ./vpxenc-2
+    image: tjulym/vpxenc-2:socket
+    environment:
+      name: vpxenc-2
+      cc: excamera-cc
+    
+  vpxenc-3:
+    lang: python3-socket-func
+    handler: ./vpxenc-3
+    image: tjulym/vpxenc-3:socket
+    environment:
+      name: vpxenc-3
+      cc: excamera-cc
+    
+  vx-con:
+    lang: python3-socket-func
+    handler: ./vx-con
+    image: tjulym/vx-con:socket
+    environment:
+      name: vx-con
+      cc: excamera-cc
+    
+  xcdec-1:
+    lang: python3-socket-func
+    handler: ./xcdec-1
+    image: tjulym/xcdec-1:socket
+    environment:
+      name: xcdec-1
+      cc: excamera-cc
+    
+  xcdec-2:
+    lang: python3-socket-func
+    handler: ./xcdec-2
+    image: tjulym/xcdec-2:socket
+    environment:
+      name: xcdec-2
+      cc: excamera-cc
+    
+  xcdec-3:
+    lang: python3-socket-func
+    handler: ./xcdec-3
+    image: tjulym/xcdec-3:socket
+    environment:
+      name: xcdec-3
+      cc: excamera-cc
+    
+  group:
+    lang: python3-socket-func
+    handler: ./group
+    image: tjulym/group:socket
+    environment:
+      name: group
+      cc: excamera-cc
+    
+  reencode-1:
+    lang: python3-socket-func
+    handler: ./reencode-1
+    image: tjulym/reencode-1:socket
+    environment:
+      name: reencode-1
+      cc: excamera-cc
+    
+  reencode-2:
+    lang: python3-socket-func
+    handler: ./reencode-2
+    image: tjulym/reencode-2:socket
+    environment:
+      name: reencode-2
+      cc: excamera-cc
+    
+  rebase:
+    lang: python3-socket-func
+    handler: ./rebase
+    image: tjulym/rebase:socket
+    environment:
+      name: rebase
+      cc: excamera-cc
+    

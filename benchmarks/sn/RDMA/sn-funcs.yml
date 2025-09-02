@@ -1,0 +1,116 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  compose-post:
+    lang: python3-rdma-func
+    handler: ./compose-post
+    image: tjulym/compose-post:rdma
+    environment:
+      name: compose-post
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-user-mentions:
+    lang: python3-rdma-func
+    handler: ./upload-user-mentions
+    image: tjulym/upload-user-mentions:rdma
+    environment:
+      name: upload-user-mentions
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-creator:
+    lang: python3-rdma-func
+    handler: ./upload-creator
+    image: tjulym/upload-creator:rdma
+    environment:
+      name: upload-creator
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-media:
+    lang: python3-rdma-func
+    handler: ./upload-media
+    image: tjulym/upload-media:rdma
+    environment:
+      name: upload-media
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-text:
+    lang: python3-rdma-func
+    handler: ./upload-text
+    image: tjulym/upload-text:rdma
+    environment:
+      name: upload-text
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-unique-id:
+    lang: python3-rdma-func
+    handler: ./upload-unique-id
+    image: tjulym/upload-unique-id:rdma
+    environment:
+      name: upload-unique-id
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  compose-and-upload:
+    lang: python3-rdma-func
+    handler: ./compose-and-upload
+    image: tjulym/compose-and-upload:rdma
+    environment:
+      name: compose-and-upload
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-home-timeline:
+    lang: python3-rdma-func
+    handler: ./upload-home-timeline
+    image: tjulym/upload-home-timeline:rdma
+    environment:
+      name: upload-home-timeline
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  upload-user-timeline:
+    lang: python3-rdma-func
+    handler: ./upload-user-timeline
+    image: tjulym/upload-user-timeline:rdma
+    environment:
+      name: upload-user-timeline
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+  post-storage:
+    lang: python3-rdma-func
+    handler: ./post-storage
+    image: tjulym/post-storage:rdma
+    environment:
+      name: post-storage
+      cc: sn-cc
+    annotations:
+      com.openfaas.rdma/ipc_lock: "true"
+      com.openfaas.rdma/device_limit: "1"
+    
+
