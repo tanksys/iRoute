@@ -9,7 +9,7 @@ This guide walks through deploying the Social Network (RDMA version) application
 Deploy `sn-db-op` function:
 
 ```bash
-kubectl apply -f sn-db-op.yml
+faas-cli deploy -f sn-db-op.yml
 ```
 
 ## 2. Initialize the Database
@@ -30,20 +30,20 @@ Deploy the coordination function `sn-cc`, which handles RDMA-based direct connec
 If your RDMA device matches the expected default configuration (i.e., `mlx5_1`), simply deploy the function:
 
 ```bash
-kubectl apply -f sn-cc.yml
+faas-cli deploy -f sn-cc.yml
 ```
 
 If the detected RDMA device is different, please update the value of `rdma.ib_dev` in `sn-cc/workflow.json`, and replace `DOCKER_USERNAME` (i.e., `tjulym`) with yours, then build, push, and deploy using:
 
 ```bash
-kubectl up -f sn-cc.yml
+faas-cli up -f sn-cc.yml
 ```
 
 
 Ensure the pod is in `Running` state.
 
 ```bash
-kubectl get pods | grep sn-cc
+kubectl get pods -n openfaas-fn | grep sn-cc
 ```
 
 
@@ -54,13 +54,13 @@ Deploy all Social Network functions that communicate over RDMA.
 If your RDMA device matches the expected default configuration (i.e., `mlx5_1`), simply deploy the functions:
 
 ```bash
-kubectl apply -f sn-funcs.yml
+faas-cli deploy -f sn-funcs.yml
 ```
 
 If the detected RDMA device is different, please update the value of `rdma.ib_dev` in `workflow.json` of each function in `sn-funcs.yml`, and replace `DOCKER_USERNAME` (i.e., `tjulym`) with yours, then build, push, and deploy using:
 
 ```bash
-kubectl up -f sn-funcs.yml
+faas-cli up -f sn-funcs.yml
 ```
 
 Check that all pods are in `Running` state before proceeding.
@@ -74,8 +74,8 @@ kubectl get pods -n openfaas-fn
 Deploy the entry function of the workflow:
 
 ```bash
-kubectl apply -f sn-entry.yml
-kubectl get pods | grep sn-entry
+faas-cli deploy -f sn-entry.yml
+kubectl get pods -n openfaas-fn | grep sn-entry
 ```
 
 Make sure the `sn-entry` pod is running.
@@ -108,8 +108,8 @@ This removes any generated test results from the database.
 Finally, remove all deployed functions to clean up the cluster:
 
 ```bash
-kubectl delete -f sn-entry.yml
-kubectl delete -f sn-cc.yml
-kubectl delete -f sn-funcs.yml
-kubectl delete -f sn-db-op.yml
+faas-cli delete -f sn-entry.yml
+faas-cli delete -f sn-cc.yml
+faas-cli delete -f sn-funcs.yml
+faas-cli delete -f sn-db-op.yml
 ```

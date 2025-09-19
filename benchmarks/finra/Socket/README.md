@@ -9,8 +9,8 @@ This guide walks through deploying the FINRA (socket version) application functi
 Deploy the coordination function `finra-cc`, which handles socket-based direct connections between functions. Also, verify that the pod is running:
 
 ```bash
-kubectl apply -f finra-cc.yml
-kubectl get pods | grep finra-cc
+faas-cli deploy -f finra-cc.yml
+kubectl get pods -n openfaas-fn | grep finra-cc
 ```
 
 Ensure the pod is in `Running` state.
@@ -20,7 +20,7 @@ Ensure the pod is in `Running` state.
 Deploy all FINRA functions that communicate over sockets:
 
 ```bash
-kubectl apply -f finra-funcs.yml
+faas-cli deploy -f finra-funcs.yml
 kubectl get pods -n openfaas-fn
 ```
 
@@ -31,8 +31,8 @@ Check that all pods are in `Running` state before proceeding.
 Deploy the entry function of the workflow:
 
 ```bash
-kubectl apply -f finra-entry.yml
-kubectl get pods | grep finra-entry
+faas-cli deploy -f finra-entry.yml
+kubectl get pods -n openfaas-fn | grep finra-entry
 ```
 
 Make sure the `finra-entry` pod is running.
@@ -55,7 +55,7 @@ The function will return the average and P99 latency of the requests.
 Finally, remove all deployed functions to clean up the cluster:
 
 ```bash
-kubectl delete -f finra-entry.yml
-kubectl delete -f finra-cc.yml
-kubectl delete -f finra-funcs.yml
+faas-cli delete -f finra-entry.yml
+faas-cli delete -f finra-cc.yml
+faas-cli delete -f finra-funcs.yml
 ```

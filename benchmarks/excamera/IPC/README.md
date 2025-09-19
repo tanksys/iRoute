@@ -26,8 +26,8 @@ export TARGET_NODE=<node_name>
 Deploy the coordination function `excamera-cc`, which handles IPC-based direct connections between functions. Also, verify that the pod is running:
 
 ```bash
-kubectl apply -f excamera-cc.yml
-kubectl get pods | grep excamera-cc
+faas-cli deploy -f excamera-cc.yml
+kubectl get pods -n openfaas-fn | grep excamera-cc
 ```
 
 Ensure the pod is in `Running` state.
@@ -37,7 +37,7 @@ Ensure the pod is in `Running` state.
 Deploy all Excamera functions that communicate over IPC:
 
 ```bash
-kubectl apply -f excamera-funcs.yml
+faas-cli deploy -f excamera-funcs.yml
 kubectl get pods -n openfaas-fn
 ```
 
@@ -48,8 +48,8 @@ Check that all pods are in `Running` state before proceeding.
 Deploy the entry function of the workflow:
 
 ```bash
-kubectl apply -f excamera-entry.yml
-kubectl get pods | grep excamera-entry
+faas-cli deploy -f excamera-entry.yml
+kubectl get pods -n openfaas-fn | grep excamera-entry
 ```
 
 Make sure the `excamera-entry` pod is running.
@@ -71,9 +71,9 @@ The function will return the average and P99 latency of the requests.
 Finally, remove all deployed functions to clean up the cluster:
 
 ```bash
-kubectl delete -f excamera-entry.yml
-kubectl delete -f excamera-cc.yml
-kubectl delete -f excamera-funcs.yml
+faas-cli delete -f excamera-entry.yml
+faas-cli delete -f excamera-cc.yml
+faas-cli delete -f excamera-funcs.yml
 ```
 
 Remove the IPC mount directory on the host:

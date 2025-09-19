@@ -12,20 +12,20 @@ Deploy the coordination function `excamera-cc`, which handles RDMA-based direct 
 If your RDMA device matches the expected default configuration (i.e., `mlx5_1`), simply deploy the function:
 
 ```bash
-kubectl apply -f excamera-cc.yml
+faas-cli deploy -f excamera-cc.yml
 ```
 
 If the detected RDMA device is different, please update the value of `rdma.ib_dev` in `excamera-cc/workflow.json`, and replace `DOCKER_USERNAME` (i.e., `tjulym`) with yours, then build, push, and deploy using:
 
 ```bash
-kubectl up -f excamera-cc.yml
+faas-cli up -f excamera-cc.yml
 ```
 
 
 Ensure the pod is in `Running` state.
 
 ```bash
-kubectl get pods | grep excamera-cc
+kubectl get pods -n openfaas-fn | grep excamera-cc
 ```
 
 
@@ -36,13 +36,13 @@ Deploy all Excamera functions that communicate over RDMA.
 If your RDMA device matches the expected default configuration (i.e., `mlx5_1`), simply deploy the functions:
 
 ```bash
-kubectl apply -f excamera-funcs.yml
+faas-cli deploy -f excamera-funcs.yml
 ```
 
 If the detected RDMA device is different, please update the value of `rdma.ib_dev` in `workflow.json` of each function in `excamera-funcs.yml`, and replace `DOCKER_USERNAME` (i.e., `tjulym`) with yours, then build, push, and deploy using:
 
 ```bash
-kubectl up -f excamera-funcs.yml
+faas-cli up -f excamera-funcs.yml
 ```
 
 Check that all pods are in `Running` state before proceeding.
@@ -56,8 +56,8 @@ kubectl get pods -n openfaas-fn
 Deploy the entry function of the workflow:
 
 ```bash
-kubectl apply -f excamera-entry.yml
-kubectl get pods | grep excamera-entry
+faas-cli deploy -f excamera-entry.yml
+kubectl get pods -n openfaas-fn | grep excamera-entry
 ```
 
 Make sure the `excamera-entry` pod is running.
@@ -81,7 +81,7 @@ The function will return the average and P99 latency of the requests.
 Finally, remove all deployed functions to clean up the cluster:
 
 ```bash
-kubectl delete -f excamera-entry.yml
-kubectl delete -f excamera-cc.yml
-kubectl delete -f excamera-funcs.yml
+faas-cli delete -f excamera-entry.yml
+faas-cli delete -f excamera-cc.yml
+faas-cli delete -f excamera-funcs.yml
 ```

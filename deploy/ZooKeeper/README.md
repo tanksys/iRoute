@@ -35,6 +35,6 @@ This guide provides the steps to deploy a Zookeeper cluster on Kubernetes using 
 ## Verify the Deployment
 Check if the Zookeeper pods are running:
    ```bash
-   kubectl get pods -l app=zookeepers
+   kubectl get pods -l app=zookeeper
    ```
 You should see the list of Zookeeper pods with their status as `Running`.

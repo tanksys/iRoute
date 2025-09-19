@@ -9,7 +9,7 @@ This guide walks through deploying the Social Network (socket version) applicati
 Deploy `sn-db-op` function:
 
 ```bash
-kubectl apply -f sn-db-op.yml
+faas-cli deploy -f sn-db-op.yml
 ```
 
 ## 2. Initialize the Database
@@ -27,8 +27,8 @@ This will prepare the database for the Social Network application.
 Deploy the coordination function `sn-cc`, which handles socket-based direct connections between functions. Also, verify that the pod is running:
 
 ```bash
-kubectl apply -f sn-cc.yml
-kubectl get pods | grep sn-cc
+faas-cli deploy -f sn-cc.yml
+kubectl get pods -n openfaas-fn | grep sn-cc
 ```
 
 Ensure the pod is in `Running` state.
@@ -38,7 +38,7 @@ Ensure the pod is in `Running` state.
 Deploy all Social Network functions that communicate over sockets:
 
 ```bash
-kubectl apply -f sn-funcs.yml
+faas-cli deploy -f sn-funcs.yml
 kubectl get pods -n openfaas-fn
 ```
 
@@ -49,8 +49,8 @@ Check that all pods are in `Running` state before proceeding.
 Deploy the entry function of the workflow:
 
 ```bash
-kubectl apply -f sn-entry.yml
-kubectl get pods | grep sn-entry
+faas-cli deploy -f sn-entry.yml
+kubectl get pods -n openfaas-fn | grep sn-entry
 ```
 
 Make sure the `sn-entry` pod is running.
@@ -83,8 +83,8 @@ This removes any generated test results from the database.
 Finally, remove all deployed functions to clean up the cluster:
 
 ```bash
-kubectl delete -f sn-entry.yml
-kubectl delete -f sn-cc.yml
-kubectl delete -f sn-funcs.yml
-kubectl delete -f sn-db-op.yml
+faas-cli delete -f sn-entry.yml
+faas-cli delete -f sn-cc.yml
+faas-cli delete -f sn-funcs.yml
+faas-cli delete -f sn-db-op.yml
 ```
